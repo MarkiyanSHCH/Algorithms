@@ -27,6 +27,16 @@ int* shiftArr(int* arr, int n, int step) {
     delete[] shiftedArr;
 }
 
+// Function Check If An Array Is Sorted Or Not
+bool checkSortArr(int* arr, int n) {
+    for (int i = 1; i < n; i++) {
+        if (arr[i - 1] > arr[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
 // Function Binary Search
 int binarySearch(int arr[], int l, int r, int x) {
     // Check If Elem Last In Array Part
@@ -85,15 +95,20 @@ int main()
         break;
     }
     case 2: {
-        cout << "Enter Number Which You Want Find: ";
-        int x;
-        cin >> x;
-        int index = binarySearch(arr, 0, size - 1, x);
-        if (index == -1) {
-            cout << "404" << endl;
+        if (checkSortArr(arr,size)) {
+            cout << "Enter Number Which You Want Find: ";
+            int x;
+            cin >> x;
+            int index = binarySearch(arr, 0, size - 1, x);
+            if (index == -1) {
+                cout << "404" << endl;
+            }
+            else {
+                cout << "Index Of Elem " << x << " Is: " << index << endl;
+            }
         }
         else {
-            cout << "Index Of Elem " << x <<" Is: " << index << endl;
+            cout << "Error: Array Not Sorted" << endl;
         }
         break; 
     }
